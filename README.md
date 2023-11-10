@@ -1,12 +1,10 @@
-﻿# Hear Me Out - DevOps e Cloud Computing - Sprint 3
+﻿# Hear Me Out - DevOps e Cloud Computing - Sprint 4
 
  ## Sobre a solução  
  O App "HearMeOut" resolveria o problema de acessibilidade para usuários com deficiência visual na plataforma da Plusoft, permitindo que eles possam interagir com os diversos segmentos da empresa (saúde, seguros, agronegócio, serviços, bens de consumo, educação, telecom, financeiro, utilities e varejo) de forma mais fácil e intuitiva por meio de um chatbot com funcionalidades de voz.
 Com a criação de um chatbot em forma de áudio, essas pessoas terão a possibilidade de tirar suas dúvidas e receber informações de forma mais acessível e inclusiva. A iniciativa busca, portanto, promover a igualdade de oportunidades e o acesso à informação para pessoas com deficiência visual.
 Nesse caso, a iniciativa também promove a inclusão e acessibilidade para um público mais amplo, ampliando o alcance e a utilidade do serviço oferecido. A acessibilidade deve ser uma preocupação de todos, e a inclusão de opções de áudio pode tornar o chatbot mais acessível e eficiente para diferentes públicos.
-
-## Desenho de arquitetura  
-![devops-sprint2](https://github.com/trcosta97/crud-user-hearmeout/assets/101136329/70150ebd-d7cc-47c3-b7d4-9655c9736b7e)
+Nesse repositório está o código da parte de cadastro do usuário. Nele temos duas tabelas: usuário e endereço, a segunda sendo cadastrada, apagada e atualizada a partir do CRUD do usuário. Foi feito deploy da API em um Azure WebApp pelo Azure Devops Pipeline.
 
 ## Benefício em relação ao negócio
 - Acessibilidade Aprimorada  
@@ -20,30 +18,31 @@ Nesse caso, a iniciativa também promove a inclusão e acessibilidade para um p�
   
 Em resumo, o projeto "HearMeOut" não apenas atende a uma necessidade importante de acessibilidade para pessoas com deficiência visual, mas também oferece vantagens comerciais, sociais e de imagem corporativa para a Plusoft. Ao investir na acessibilidade e na inclusão, a empresa está alinhada com os valores contemporâneos de diversidade e igualdade, ao mesmo tempo em que amplia sua base de clientes e melhora a experiência do usuário para todos os públicos.
 
-## Deploy
-Vídeo msotrando como fazer o deploy:
-https://youtu.be/Wo-WyxJYj3A
+## O Pipeline
+![10435234](https://github.com/trcosta97/devops-sprint5/assets/101136329/0a04ab43-30e7-417d-83eb-b3666409884a)
 
-Antes de tudo, é importante que você tenha uma conta no Github e tenha um repositório com uma API springboot.  
-Depois disso é preciso que você faça login [Railway App](railway.app) com a sua conta Github e crie um novo projeto no seu Dashboard e pronto: o processo é super intuitivo, qualquer dúvida é só seguir os passos do [vídeo](https://youtu.be/Wo-WyxJYj3A).  
 
-### Mas por que usar o Railway App?
-Ao considerar a plataforma de hospedagem para nosso projeto, avaliamos cuidadosamente várias opções, incluindo o Microsoft Azure. No entanto, após uma análise abrangente, optamos pelo Railway App por vários motivos fundamentais:
+### Controle de Versão
+O código-fonte da sua aplicação é armazenado e gerenciado em um repositório Git hospedado no Azure DevOps. Isso permite o controle de versão, colaboração e rastreamento de alterações.  
 
-#### Facilidade de Uso e Rapidez de Implantação:
-O Railway App ofereceu uma experiência de implantação simplificada e mais rápida em comparação com o Microsoft Azure. Sua interface intuitiva e a integração perfeita com nosso código facilitaram a implantação e o gerenciamento da aplicação em questão de minutos.
+### Automação de Build  
+O Azure DevOps inicia automaticamente o processo de compilação da aplicação com base nas configurações definidas na pipeline. Isso envolve a coleta do código-fonte do repositório, a resolução de dependências, a compilação e a geração de artefatos executáveis.  
 
-#### Adequação ao Escopo do Projeto:
-Para o nosso projeto atual, que é um aplicativo de menor escala, o Railway App atendeu perfeitamente às nossas necessidades de hospedagem. Não precisávamos dos recursos escaláveis e complexos oferecidos pelo Azure, o que teria adicionado complexidade e custos desnecessários.
+### Testes
+Após a compilação, os testes definidos na aplicação são executados para garantir que o código individual esteja funcionando corretamente. Os resultados dos testes são registrados.
 
-#### Evolução do Projeto:
-Planejamos continuar avaliando nossas necessidades de hospedagem à medida que nosso projeto evolui. Embora o Microsoft Azure seja uma opção robusta para projetos de grande escala, escolher o Railway App inicialmente nos permitiu concentrar nossos recursos em outras áreas do projeto, como desenvolvimento e melhorias de recursos.
+### Empacotamento
+Os artefatos gerados são preparados para implantação, como empacotar o aplicativo em um arquivo JAR.
 
-Em resumo, a escolha do Railway App em vez do Microsoft Azure foi uma decisão estratégica baseada nas necessidades específicas do nosso projeto atual, levando em consideração fatores como facilidade de uso, custos, integração e suporte. À medida que nossa aplicação cresce e nossas necessidades mudam, estaremos abertos a reavaliar nossas opções de hospedagem para garantir que continuemos a atender às demandas do nosso público e da nossa equipe de desenvolvimento.
+### Publicação
+A aplicação, agora empacotada em um JAR, é publicada em um Azure WebApp previamente criado e, como configurado na Pipeline, tem o trigger que atualiza a partir dos commits no repositório raiz.
+
+### Métricas e Relatórios
+A Azure gera relatórios e métricas sobre o desempenho da pipeline e do aplicativo, permitindo uma avaliação detalhada.
 
 ## JSON para a API:
 ### Cadastro de usuário:
-URL: "/user"  
+URL: "/user/post"  
 VERBO: POST  
 ```console
   {
@@ -63,14 +62,23 @@ VERBO: POST
 }
 ```
 
+### Atualização de usuário:
+URL: "/user/update/{id}" sendo {id} o id do usuário pesquisado    
+VERBO: PUT 
+  ```
+  {
+  "email": "string",
+  "password": "string",
+  }
+  ```
 ### Pesquisa de usuário:
-URL: "/user/{id}" sendo {id} o id do usuário pesquisado    
+URL: "/user/get/{id}" sendo {id} o id do usuário pesquisado    
 VERBO: GET   
 
 ### Listagem de usuários:
-URL: "/user/"   
+URL: "/user/get"   
 VERBO: GET  
 
 ### Exclusão lógica de usuário:
-URL: "/user/{id}" sendo {id} o id do usuário excluído  
+URL: "/user/delete/{id}" sendo {id} o id do usuário excluído  
 VERBO: DELETE 
