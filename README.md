@@ -21,6 +21,8 @@ Em resumo, o projeto "HearMeOut" não apenas atende a uma necessidade importante
 ## O Pipeline
 ![10435234](https://github.com/trcosta97/devops-sprint5/assets/101136329/0a04ab43-30e7-417d-83eb-b3666409884a)
 
+Vídeo do deploy: https://youtu.be/NSRXSD8HNc0
+
 
 ### Controle de Versão
 O código-fonte da sua aplicação é armazenado e gerenciado em um repositório Git hospedado no Azure DevOps. Isso permite o controle de versão, colaboração e rastreamento de alterações.  
