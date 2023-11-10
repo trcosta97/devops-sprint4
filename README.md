@@ -42,6 +42,18 @@ A aplicação, agora empacotada em um JAR, é publicada em um Azure WebApp previ
 ### Métricas e Relatórios
 A Azure gera relatórios e métricas sobre o desempenho da pipeline e do aplicativo, permitindo uma avaliação detalhada.
 
+### Configurações da Pipeline
+![Captura de tela 2023-11-10 113519](https://github.com/trcosta97/devops-sprint4/assets/101136329/0aa744af-37e5-4cf2-b25e-545033de9092)  
+
+![Captura de tela 2023-11-10 113454](https://github.com/trcosta97/devops-sprint4/assets/101136329/fe3a8e4a-9b66-476b-a814-7ac9a1a8cf65)  
+
+![Captura de tela 2023-11-10 113443](https://github.com/trcosta97/devops-sprint4/assets/101136329/968cb55e-256e-44f5-98f4-91f49578d987)  
+
+![Captura de tela 2023-11-10 113430](https://github.com/trcosta97/devops-sprint4/assets/101136329/4da030b1-36a7-4d65-a880-5db797357861)  
+
+![Captura de tela 2023-11-10 113404](https://github.com/trcosta97/devops-sprint4/assets/101136329/570bf2f3-3d22-4d52-a6d3-890e7ea291cb)  
+
+
 ## JSON para a API:
 ### Cadastro de usuário:
 URL: "/user/post"  
